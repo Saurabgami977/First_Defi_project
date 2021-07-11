@@ -3,6 +3,7 @@ import dai from '../dai.png'
 
 class Main extends Component {
 
+
     render() {
         return (
             <div>
@@ -23,7 +24,13 @@ class Main extends Component {
 
                 <div className="card mb-4">
                     <div className="card-body">
-                        <form className="mb-3">
+                        <form className="mb-3" onSubmit={(e) => {
+                            e.preventDefault();
+                            let amount;
+                            amount = this.input.value.toString();
+                            amount = window.web3.utils.toWei(amount, 'Ether');
+                            this.props.stakeTokens(amount);
+                        }}>
                             <div>
                                 <label className="float-left"><b>Stake Tokens</b></label>
                                 <span className="float-right text-muted">
@@ -32,6 +39,7 @@ class Main extends Component {
                             </div>
                             <div className="input-group mb-4">
                                 <input
+                                    ref={(input) => { this.input = input }}
                                     type="text"
                                     className="form-control form-control-lg"
                                     placeholder="0"
@@ -44,10 +52,20 @@ class Main extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <button className="btn bnt-primary btn-block btn-lg" type='submit'>
+                            <button className="btn btn-primary btn-block btn-lg" type='submit'>
                                 Stake!
                             </button>
                         </form>
+                        <button
+                            className="btn btn-link btn-block btn-sm"
+                            type="submit"
+                            onClick={e => {
+                                e.preventDefault();
+                                this.props.unstakeTokens()
+                            }}
+                        >
+                            Un-STAKE...
+                        </button>
                     </div>
                 </div>
 
