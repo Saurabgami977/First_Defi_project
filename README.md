@@ -1,4 +1,4 @@
-# How to reward stakers
+# Simple Token Farm
 
 ### 1. Clone repo
 ### 2. Run npm install
@@ -10,5 +10,5 @@
 ## For testing
 ### npm run test
 
-### Stake Tokens
+## For Reward after staking tokens
 ### Run command truffle exec ./scripts/issue-tokens.js
